@@ -95,9 +95,9 @@ public class Modele implements ModelePuissance4 {
                 } catch (ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
                     exceptionMauvaisNumeroDeColonne.printStackTrace();
                 }
-                if( pion.equals(JAUNE))
+                if( JAUNE.equals(pion))
                     sb.append("J");
-                else if( pion.equals(ROUGE))
+                else if( ROUGE.equals(pion))
                     sb.append("R");
                 else
                     sb.append(".");
