@@ -24,11 +24,11 @@ public class TestModele {
     @Test
     public void testEmpilementEtPositionsPions() throws ExceptionMauvaisNumeroDeColonne,  ExceptionMauvaisNumeroDeLigne, ExceptionColonnePleine {
 
-        modele.lacherPionDansColonne(JAUNE, 2);
-        modele.lacherPionDansColonne(ROUGE, 2);
-        modele.lacherPionDansColonne(JAUNE, 2);
-        modele.lacherPionDansColonne(JAUNE, 5);
-        modele.lacherPionDansColonne(ROUGE, 5);
+        modele.lacherPionDansColonne(2,JAUNE);
+        modele.lacherPionDansColonne(2,ROUGE);
+        modele.lacherPionDansColonne(2,JAUNE);
+        modele.lacherPionDansColonne(5,JAUNE);
+        modele.lacherPionDansColonne(5,ROUGE);
         assertTrue(modele.pionEnPosition(1, 5) == JAUNE);
         assertTrue(modele.pionEnPosition(2, 5) == ROUGE);
         assertTrue(modele.pionEnPosition(1, 2) == JAUNE);
@@ -41,9 +41,9 @@ public class TestModele {
     @Test
     public void testViderModele() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
 
-        modele.lacherPionDansColonne(JAUNE, 2);
-        modele.lacherPionDansColonne(ROUGE, 2);
-        modele.lacherPionDansColonne(JAUNE, 2);
+        modele.lacherPionDansColonne(2,JAUNE);
+        modele.lacherPionDansColonne(2,ROUGE);
+        modele.lacherPionDansColonne(2,JAUNE);
         modele.vider();
         assertTrue(modele.nbPionsJoues() == 0);
 
@@ -52,9 +52,9 @@ public class TestModele {
     @Test
     public void testNbPionsJoues() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
 
-        modele.lacherPionDansColonne(JAUNE, 2);
-        modele.lacherPionDansColonne(ROUGE, 3);
-        modele.lacherPionDansColonne(JAUNE, 4);
+        modele.lacherPionDansColonne(2,JAUNE);
+        modele.lacherPionDansColonne(3,ROUGE);
+        modele.lacherPionDansColonne(4,JAUNE);
 
         assertTrue(modele.nbPionsJoues() == 3);
     }
@@ -62,13 +62,12 @@ public class TestModele {
 
     @Test
     public void testToStringModele() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
-        modele.lacherPionDansColonne( JAUNE , 1 );
-        modele.lacherPionDansColonne( JAUNE , 1 );
-        modele.lacherPionDansColonne( JAUNE , 1 );
-        modele.lacherPionDansColonne( ROUGE , 7 );
-        modele.lacherPionDansColonne( ROUGE , 7 );
-        modele.lacherPionDansColonne( ROUGE , 7 );
-
+        modele.lacherPionDansColonne( 1 ,JAUNE );
+        modele.lacherPionDansColonne( 1 ,JAUNE );
+        modele.lacherPionDansColonne( 1 ,JAUNE );
+        modele.lacherPionDansColonne(7, ROUGE  );
+        modele.lacherPionDansColonne(7, ROUGE  );
+        modele.lacherPionDansColonne(7, ROUGE  );
         String attendu =
                  ".......\n"+
                  ".......\n"+
@@ -88,7 +87,7 @@ public class TestModele {
     public void testExceptionColonnePleine() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
 
         for( int i=1; i<= Modele.NB_LIG+1; i++ )
-            modele.lacherPionDansColonne( JAUNE , 2 );
+            modele.lacherPionDansColonne( 2,JAUNE );
     }
     @Test( expected = ExceptionMauvaisNumeroDeColonne.class)
     public void testExceptionMauvaisNumeroDeColonne() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
