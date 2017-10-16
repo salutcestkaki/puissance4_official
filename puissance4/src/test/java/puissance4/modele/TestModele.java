@@ -92,7 +92,7 @@ public class TestModele {
     @Test( expected = ExceptionMauvaisNumeroDeColonne.class)
     public void testExceptionMauvaisNumeroDeColonne() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine {
 
-        modele.lacherPionDansColonne( JAUNE , Modele.NB_COLS+1 );
+        modele.lacherPionDansColonne( JAUNE , Modele.NB_COL+1 );
     }
     @Test( expected = ExceptionMauvaisNumeroDeLigne.class)
     public void testExceptionMauvaisNumeroDeLigne() throws ExceptionMauvaisNumeroDeColonne, ExceptionColonnePleine, ExceptionMauvaisNumeroDeLigne {

@@ -47,8 +47,8 @@ public class ControleurPuissance4 implements EventHandler {
      */
     public void setVue(VuePuissance4 vue) {
         this.vue = vue;
-        //TODO : lier la gestions des boutons de la vue au controleur (this)
-
+        //lier la gestions des boutons de la vue au controleur (this)
+        vue.ajouterEcouteurBoutons(this);
     }
 
     /**
@@ -61,7 +61,23 @@ public class ControleurPuissance4 implements EventHandler {
     public void dessinerModeleSurVue() throws ExceptionColonnePleine {
         for( int col=1; col<= modele.nbColonnes(); col++) {
             for( int lig=1; lig<= modele.nbLignes(); lig++) {
-                //TODO Dessiner le modele sur la vue avec la fonction dessineContenu de la vue
+                //Dessiner le modele sur la vue avec la fonction dessineContenu de la vue
+                Contenu contenu = null;
+                try {
+                    contenu = modele.pionEnPosition(lig,col);
+                    vue.dessineContenu(lig,col,contenu);
+                } catch (ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
+                    exceptionMauvaisNumeroDeColonne.printStackTrace();
+                } catch (ExceptionMauvaisNumeroDeLigne exceptionMauvaisNumeroDeLigne) {
+                    exceptionMauvaisNumeroDeLigne.printStackTrace();
+                } catch (puissance4.modele.ExceptionColonnePleine exceptionColonnePleine) {
+                    exceptionColonnePleine.printStackTrace();
+                } catch (puissance4.modele.ExceptionMauvaisNumeroDeLigne exceptionMauvaisNumeroDeLigne) {
+                    exceptionMauvaisNumeroDeLigne.printStackTrace();
+                } catch (puissance4.modele.ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
+                    exceptionMauvaisNumeroDeColonne.printStackTrace();
+                }
+
             }
         }
     }
@@ -99,7 +115,17 @@ public class ControleurPuissance4 implements EventHandler {
     private void controleEtJoueCoup() {
         //TODO implementer le coup sur la colonne jouee sur la vue
         // recuperation de la colonne jouee
+        int colonneJoue = vue.colonneJouee();
         // lacher du pion actif
+        try {
+            modele.lacherPionDansColonne(colonneJoue,pionActif);
+            dessinerModeleSurVue();
+            vue.nouveauCoup();
+        } catch (ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
+            exceptionMauvaisNumeroDeColonne.printStackTrace();
+        } catch (ExceptionColonnePleine exceptionColonnePleine) {
+            exceptionColonnePleine.printStackTrace();
+        }
         // preparer un nouveau coup
         // traiter le cas colonne pleine
 

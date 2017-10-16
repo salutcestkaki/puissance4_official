@@ -1,4 +1,4 @@
 package puissance4.modele;
 
-public interface Contenu {
+public interface Contenu extends puissance4.interfaces.Contenu {
 }
