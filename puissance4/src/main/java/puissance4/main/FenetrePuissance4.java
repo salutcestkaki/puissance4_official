@@ -28,8 +28,9 @@ public class FenetrePuissance4 extends Application {
         jeu = new Vue();
 
         ControleurPuissance4 controleur = new ControleurPuissance4();
-        //TODO lier la vue et le modele au controleur
-
+        // lier la vue et le modele au controleur */
+        controleur.setVue( jeu );
+        controleur.setModele( new Modele() );
 
         // Incorporation de la vue dans une fenetre Java FX
         Scene scene = new Scene( jeu, 500, 500, Color.GRAY);

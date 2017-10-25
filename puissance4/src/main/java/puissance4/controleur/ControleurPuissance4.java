@@ -47,8 +47,9 @@ public class ControleurPuissance4 implements EventHandler {
      */
     public void setVue(VuePuissance4 vue) {
         this.vue = vue;
-        //lier la gestions des boutons de la vue au controleur (this)
-        vue.ajouterEcouteurBoutons(this);
+        // lier la gestions des boutons de la vue au controleur (this)
+        vue.ajouterEcouteurBoutons( this );
+
     }
 
     /**
@@ -62,22 +63,14 @@ public class ControleurPuissance4 implements EventHandler {
         for( int col=1; col<= modele.nbColonnes(); col++) {
             for( int lig=1; lig<= modele.nbLignes(); lig++) {
                 //Dessiner le modele sur la vue avec la fonction dessineContenu de la vue
-                Contenu contenu = null;
                 try {
-                    contenu = modele.pionEnPosition(lig,col);
-                    vue.dessineContenu(lig,col,contenu);
+                    Contenu contenu = modele.pionEnPosition( lig , col );
+                    vue.dessineContenu( lig , col , contenu );
                 } catch (ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
                     exceptionMauvaisNumeroDeColonne.printStackTrace();
                 } catch (ExceptionMauvaisNumeroDeLigne exceptionMauvaisNumeroDeLigne) {
                     exceptionMauvaisNumeroDeLigne.printStackTrace();
-                } catch (puissance4.modele.ExceptionColonnePleine exceptionColonnePleine) {
-                    exceptionColonnePleine.printStackTrace();
-                } catch (puissance4.modele.ExceptionMauvaisNumeroDeLigne exceptionMauvaisNumeroDeLigne) {
-                    exceptionMauvaisNumeroDeLigne.printStackTrace();
-                } catch (puissance4.modele.ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
-                    exceptionMauvaisNumeroDeColonne.printStackTrace();
                 }
-
             }
         }
     }
@@ -113,12 +106,12 @@ public class ControleurPuissance4 implements EventHandler {
      *  Permet de jouer le coup dans la colonne pointee par le pion a jouer
      */
     private void controleEtJoueCoup() {
-        //TODO implementer le coup sur la colonne jouee sur la vue
+        // implementer le coup sur la colonne jouee sur la vue
         // recuperation de la colonne jouee
         int colonneJoue = vue.colonneJouee();
         // lacher du pion actif
         try {
-            modele.lacherPionDansColonne(colonneJoue,pionActif);
+            modele.lacherPionDansColonne( colonneJoue , pionActif );
             dessinerModeleSurVue();
             vue.nouveauCoup();
         } catch (ExceptionMauvaisNumeroDeColonne exceptionMauvaisNumeroDeColonne) {
