@@ -7,5 +7,6 @@ public interface VuePuissance4 {
     public int colonneJouee();
     public void ajouterEcouteurBoutons( EventHandler eventHandler);
     public void nouveauCoup();
+    public void ecrireAvertissement (String message);
 
 }
